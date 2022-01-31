@@ -36,3 +36,21 @@
     transform: rotate(360deg);
   }
 }
+
+.card-spacing{
+  margin-bottom:20px;
+}
+
+.to-do-list-wrapper{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+}
+
+.to-do-list-body {
+  border-style: solid;
+  align-items: center;
+  width: 68%;
+  padding: 3%;
+}
