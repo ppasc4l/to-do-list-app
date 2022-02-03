@@ -29,12 +29,16 @@ class App extends React.Component {
     
     console.log(value);
     const tasks = this.state.tasks;
-    tasks.push(value);
 
-    this.setState({
-      tasks: tasks,
-    })
-    // e.target.value="";
+    if(!tasks.includes(value)){
+      tasks.push(value);
+      this.setState({
+        tasks: tasks,
+      });
+    }
+    else{
+      console.log("Element already on list. Try again.");
+    }
   }
 
   handleChange=(e)=>{
