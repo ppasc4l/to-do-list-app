@@ -13,18 +13,6 @@ class App extends React.Component {
     }
   }
 
-  submitTask=()=>{
-    console.log(this.state.newTaskInput)
-
-    const tasks = this.state.tasks;
-    tasks.push(this.state.newTaskInput)
-    this.setState({
-      tasks: tasks,
-      newTaskInput: ''
-    })
-    
-  }
-
   onSubmit = (value) =>{
     
     console.log(value);
@@ -41,10 +29,6 @@ class App extends React.Component {
     }
   }
 
-  handleChange=(e)=>{
-    this.setState({newTaskInput: e.target.value})
-  }
-
   deleteTask= (value) =>{
       const tasks = this.state.tasks;
 
@@ -52,6 +36,27 @@ class App extends React.Component {
       this.setState({
         tasks: newTasks
       }, () => console.log(this.state.tasks))
+  }
+
+  moveUp = (index) =>{
+    let tasks = this.state.tasks;
+
+    const temp = tasks[index];
+    tasks[index] = tasks[index - 1]; 
+    tasks[index - 1] = temp;
+
+    this.setState({tasks: tasks});
+  }
+
+  moveDown = (index) =>{
+    let tasks = this.state.tasks;
+
+    const temp = tasks[index];
+    tasks[index] = tasks[index + 1]; 
+    tasks[index + 1] = temp;
+
+    this.setState({tasks: tasks})
+    
   }
 
   render() {
@@ -65,7 +70,7 @@ class App extends React.Component {
           <div className="to-do-list-body">
 
             <FormGroup sx={{ display: 'flex', flexDirection: 'column', ml: 3 }}>
-                <TaskItem tasks={this.state.tasks} onClick={this.deleteTask}/>
+                <TaskItem tasks={this.state.tasks} onClick={this.deleteTask} moveUp={this.moveUp} moveDown={this.moveDown}/>
             </FormGroup>
 
             <AddTask onClick={this.submitTask} onSubmit={this.onSubmit} />

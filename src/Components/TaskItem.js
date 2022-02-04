@@ -5,16 +5,16 @@ import CloseIcon from '@mui/icons-material/Close';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
-const TaskItem = ({tasks, onClick}) => {
+const TaskItem = ({tasks, onClick, moveUp, moveDown}) => {
   return (
     <div className="card-container">
       {tasks.map((item, index) => (
-        <Card className="card-style" key={item} index={index}>
+        <Card className="card-style" key={item}>
           <div>
-            <IconButton>
+            <IconButton onClick={e => moveUp(index)} index={index} disabled={index == 0}>
               <ArrowDropUpIcon/>
             </IconButton>
-            <IconButton>
+            <IconButton onClick={e => moveDown(index)} disabled={index == tasks.length - 1}>
               <ArrowDropDownIcon/>
             </IconButton>
           </div>
