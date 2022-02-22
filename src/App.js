@@ -35,7 +35,7 @@ class App extends React.Component {
       const newTasks = tasks.filter(word => word !== value);
       this.setState({
         tasks: newTasks
-      }, () => console.log(this.state.tasks))
+      });
   }
 
   moveUp = (index) =>{
